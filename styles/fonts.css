@@ -94,7 +94,75 @@
   font-display: swap;
 }
 
-/* Reading serif — EB Garamond variable (OFL). */
+/* Sailec — client-supplied. Weight mapping mirrors the original export:
+   Thin 100, Light 300, Medium as 400 & 500, Bold 700, plus Regular Italic. */
+@font-face {
+  font-family: "Sailec";
+  src: url("/fonts/Sailec-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sailec";
+  src: url("/fonts/Sailec-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sailec";
+  src: url("/fonts/Sailec-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sailec";
+  src: url("/fonts/Sailec-RegularItalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sailec";
+  src: url("/fonts/Sailec-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sailec";
+  src: url("/fonts/Sailec-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Jannon — client-supplied reading serif. Book 400, Bold 700, Italic 400. */
+@font-face {
+  font-family: "Jannon";
+  src: url("/fonts/Jannon-Book.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Jannon";
+  src: url("/fonts/Jannon-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Jannon";
+  src: url("/fonts/Jannon-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* EB Garamond variable (OFL) — kept only as a fallback behind Jannon. */
 @font-face {
   font-family: "EB Garamond";
   src: url("/fonts/EBGaramond.ttf") format("truetype-variations");

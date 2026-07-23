@@ -7,10 +7,10 @@
 @import "./fonts.css";
 
 :root {
-  /* Article-level font aliases (mirror the original Loewe export).
-     Reading = classic book serif; Lead/intro = clean grotesque. */
-  --font-garamond: "EB Garamond", "Garamond", Georgia, serif;
-  --font-sailec: "Suisse Intl", system-ui, -apple-system, sans-serif;
+  /* Article-level font aliases (the real client fonts from the export).
+     Reading = Jannon (book serif); Lead/intro = Sailec (grotesque). */
+  --font-garamond: "Jannon", "EB Garamond", "Garamond", Georgia, serif;
+  --font-sailec: "Sailec", "Suisse Intl", system-ui, -apple-system, sans-serif;
   --font-reading: var(--font-garamond);
   --font-lead: var(--font-sailec);
   --font-lead-style: normal;
