@@ -1,0 +1,73 @@
+/* ARKETYPE: Color tokens
+   Source: brand color table (client-provided).
+   Portuguese function notes translated inline. */
+
+:root {
+  /* ---- Base palette (verbatim from brand table) ---- */
+  --archive-white: #F4F3EF;     /* Fundo principal, próximo de papel: primary bg, near-paper */
+  --absolute-white: #FFFFFF;    /* Contraste digital: digital contrast */
+  --institutional-black: #0A0A0A; /* Texto: text */
+  --graphite: #3B3B39;          /* Grids e capas: grids and covers */
+  --aluminum: #BFC0BD;          /* Simulação digital da prata: digital simulation of silver */
+  --soft-silver: #D7D7D3;       /* Fundos e camadas: backgrounds and layers */
+
+  /* Mirror Silver is a physical material (foil/mirrored stock) used for covers,
+     packaging and special applications: no fixed digital hex.
+     CANONICAL TEXTURE: assets/textures/mirror-silver-polish.png is a
+     text-free crop of the real reference photo (client-supplied), polished
+     for a glossy, reflective brushed-aluminum look (higher contrast +
+     synthetic specular sheen bands, not a matte/dull read) — isolated
+     from the two clean bands of the source image (the source itself has
+     an editorial quote baked into its pixels, so never use the raw upload
+     as a background). Use this texture (background-image, cover/center)
+     wherever Mirror Silver
+     Silver appears on screen: covers, hero moments, editorial quote posts.
+     The direction/spread of the highlight may vary per composition (a
+     brightness/contrast filter or a dark radial vignette layered on top is
+     fine), but never re-draw or regenerate the grain/texture itself.
+     --mirror-silver-gradient below is a lightweight CSS-only fallback for
+     contexts that can't load the image (e.g. a component with no reliable
+     relative path to assets/); prefer the real photo whenever the calling
+     file's path is known. */
+  --mirror-silver-1: #EDEEEA;
+  --mirror-silver-2: #C7C9C5;
+  --mirror-silver-3: #9A9C97;
+  --mirror-silver-4: #E3E4DF;
+  --mirror-silver-sheen: radial-gradient(120% 90% at 12% -15%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 55%); /* @kind color */
+  --mirror-silver-brushed: repeating-linear-gradient(112deg, rgba(10, 10, 10, 0.05) 0px, rgba(10, 10, 10, 0.05) 1px, rgba(255, 255, 255, 0.07) 1px, rgba(255, 255, 255, 0.07) 3px); /* @kind color */
+  --mirror-silver-base: linear-gradient(128deg, var(--mirror-silver-3) 0%, var(--mirror-silver-1) 16%, var(--mirror-silver-2) 34%, var(--mirror-silver-4) 50%, var(--mirror-silver-3) 68%, var(--mirror-silver-1) 84%, var(--mirror-silver-2) 100%);
+  --mirror-silver-gradient: var(--mirror-silver-sheen), var(--mirror-silver-brushed), var(--mirror-silver-base);
+
+  /* ---- Semantic aliases ---- */
+  --surface-primary: var(--archive-white);
+  --surface-raised: var(--absolute-white);
+  --surface-sunken: var(--soft-silver);
+  --surface-inverse: var(--institutional-black);
+  --surface-cover: var(--graphite);
+  --surface-material: var(--mirror-silver-gradient);
+
+  --text-primary: var(--institutional-black);
+  --text-secondary: var(--graphite);
+  --text-tertiary: #6E6F6B;
+  --text-on-inverse: var(--archive-white);
+  --text-disabled: #9A9B97;
+
+  --border-default: #C9C9C4;
+  --border-strong: var(--institutional-black);
+  --border-subtle: var(--soft-silver);
+  --border-on-inverse: rgba(244, 243, 239, 0.24);
+
+  --accent-primary: var(--institutional-black);
+  --accent-on-primary: var(--archive-white);
+  --accent-silver: var(--aluminum);
+
+  --focus-ring: var(--institutional-black);
+
+  /* Functional states: kept monochrome/neutral by default; brand has no
+     documented color-coded status system, so these lean on tone + icon,
+     not hue. A single desaturated signal each for rare cases. */
+  --state-success: #3B3B39;
+  --state-warning: #6E6F6B;
+  --state-danger: #A31F12;
+  --state-danger-surface: #F7E9E7;
+}

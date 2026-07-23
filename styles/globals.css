@@ -1,0 +1,59 @@
+/* ARKETYPE — global base.
+   Load order: brand tokens (colors/spacing/typography) → fonts → base.
+   @import must precede all other rules. */
+@import "./tokens-colors.css";
+@import "./tokens-spacing.css";
+@import "./tokens-typography.css";
+@import "./fonts.css";
+
+:root {
+  /* Article-level font aliases (mirror the original Loewe export).
+     Reading = classic book serif; Lead/intro = clean grotesque. */
+  --font-garamond: "EB Garamond", "Garamond", Georgia, serif;
+  --font-sailec: "Suisse Intl", system-ui, -apple-system, sans-serif;
+  --font-reading: var(--font-garamond);
+  --font-lead: var(--font-sailec);
+  --font-lead-style: normal;
+  /* Big uppercase display headings in the article (kept faithful to export). */
+  --font-headline: "Helvetica Neue", "Suisse Intl", Helvetica, Arial, sans-serif;
+
+  --page: var(--archive-white);
+  --card: var(--absolute-white);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--institutional-black);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--institutional-black);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--graphite);
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Prevent horizontal overflow from full-bleed sections that use
+   width:100vw + margin-left:calc(50% - 50vw). */
+main,
+body {
+  overflow-x: clip;
+}

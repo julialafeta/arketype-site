@@ -1,0 +1,59 @@
+/* ARKETYPE: Typography tokens
+   Brand logotype is a bold, custom-cut geometric display face (diagonal
+   knife-cuts on A/K/Y/E). No brand display/UI font files were supplied, so
+   we substitute the nearest Google Fonts match: UNBOUNDED for display duty
+   (angular, geometric, confident at large sizes): flagged in readme.md
+   for replacement with real brand font files if/when available.
+   Archivo (grotesque) drives UI chrome: buttons, inputs, labels, captions,
+   where legibility and a 600-weight need to hold at small sizes. Space Mono
+   covers annotations/specs/codes.
+   Instrument Serif is a real, client-supplied font (regular + italic) and
+   sets running/paragraph body copy: an editorial, single-weight serif, used
+   wherever the tokens below say "body" (--text-body, --text-body-lg,
+   --text-body-sm), never for UI chrome (no bold cut exists).
+   Webfont files + @font-face rules live in fonts.css. */
+
+:root {
+  /* ---- Font families ---- */
+  --font-display: 'Unbounded', 'Arial Narrow', sans-serif; /* @kind font */
+  --font-body: 'Archivo', 'Helvetica Neue', Arial, sans-serif; /* @kind font */
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif; /* @kind font */
+  --font-mono: 'Space Mono', 'Courier New', monospace; /* @kind font */
+
+  /* ---- Display sizes (fluid): kept as standalone tokens so the font
+     shorthand below never mixes clamp()/vw math with a var() family in
+     one string ---- */
+  --size-display-1: clamp(3rem, 2.2rem + 4vw, 7rem); /* @kind spacing */
+  --size-display-2: clamp(2.25rem, 1.8rem + 2.4vw, 4.5rem); /* @kind spacing */
+  --size-display-3: clamp(1.75rem, 1.5rem + 1.2vw, 2.75rem); /* @kind spacing */
+
+  /* ---- Display / headline scale (Unbounded, tight tracking, uppercase-friendly) ---- */
+  --text-display-1: 700 var(--size-display-1)/0.94 var(--font-display);
+  --text-display-2: 700 var(--size-display-2)/0.98 var(--font-display);
+  --text-display-3: 600 var(--size-display-3)/1.04 var(--font-display);
+  --text-heading-1: 600 2rem/1.15 var(--font-display);
+  --text-heading-2: 600 1.5rem/1.2 var(--font-display);
+  --text-heading-3: 600 1.125rem/1.3 var(--font-display);
+
+  /* ---- Body (Instrument Serif): running/paragraph copy only ---- */
+  --text-body-lg: 400 1.375rem/1.45 var(--font-serif);
+  --text-body: 400 1.1875rem/1.5 var(--font-serif);
+  --text-body-sm: 400 1.0625rem/1.45 var(--font-serif);
+
+  /* ---- UI chrome (Archivo): labels, captions, buttons, form text ---- */
+  --text-label: 600 0.8125rem/1.3 var(--font-body);
+  --text-caption: 500 0.75rem/1.35 var(--font-body);
+
+  /* ---- Mono (Space Mono): specs, codes, timestamps, index numbers ---- */
+  --text-mono: 400 0.875rem/1.5 var(--font-mono);
+  --text-mono-sm: 400 0.75rem/1.4 var(--font-mono);
+
+  /* ---- Letter-spacing ---- */
+  --tracking-tightest: -0.03em; /* @kind spacing */ /* large display */
+  --tracking-tight: -0.01em; /* @kind spacing */ /* headings */
+  --tracking-normal: 0em; /* @kind spacing */ /* body */
+  --tracking-wide: 0.04em; /* @kind spacing */ /* small caps labels */
+  --tracking-widest: 0.14em; /* @kind spacing */ /* eyebrows / index labels, uppercase */
+
+  --case-eyebrow: uppercase; /* @kind other */
+}

@@ -1,0 +1,57 @@
+/* ARKETYPE: Spacing, grid & radius tokens
+   The brand is built on a strict editorial grid (see Graphite "grids e capas"
+   function): generous whitespace, hairline rules, near-zero corner radii.
+   An 8px base unit keeps layouts calculable and print-adjacent. */
+
+:root {
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 192px;
+
+  /* Editorial grid */
+  --grid-margin: clamp(20px, 4vw, 64px);
+  --grid-gutter: 24px;
+  --grid-columns: 12; /* @kind other */
+  --content-max: 1280px;
+
+  /* Radii: the brand's cut, angular logotype signals almost no softening.
+     Sharp by default; a single small radius for touch targets only. */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-pill: 999px;
+  /* Form controls (Input, Select, Checkbox) borrow a macOS-influenced
+     control radius: still restrained, but soft enough to read as native
+     system UI rather than the brand's flat editorial surfaces. An
+     isolated exception, like MacWindow's chrome radius. */
+  --radius-control: 8px;
+
+  /* Border widths */
+  --border-hairline: 1px;
+  --border-thick: 2px;
+
+  /* Motion: crisp and mechanical, never bouncy or elastic */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1); /* @kind other */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1); /* @kind other */
+  --duration-fast: 120ms; /* @kind other */
+  --duration-base: 200ms; /* @kind other */
+  --duration-slow: 360ms; /* @kind other */
+
+  /* Shadow: flat design language; shadows are near-absent, replaced by
+     hairline borders. The one elevation shadow is a tight, low-opacity
+     contact shadow (not a soft ambient glow). */
+  --shadow-none: none;
+  --shadow-card: 0 1px 0 rgba(10,10,10,0.06), 0 2px 8px rgba(10,10,10,0.05);
+  --shadow-modal: 0 12px 32px rgba(10,10,10,0.16);
+  --shadow-focus: 0 0 0 3px rgba(10,10,10,0.14);
+}
