@@ -295,16 +295,19 @@ a.cat-dropdown__item:hover {
   font-family: var(--font-lead);
   font-style: var(--font-lead-style, normal);
   font-weight: 400;
-  font-size: clamp(1.5rem, 1.15rem + 1vw, 1.9rem);
+  font-size: clamp(1.15rem, 1rem + 0.45vw, 1.35rem);
   line-height: 1.45;
   text-align: justify;
   hyphens: auto;
   margin: 0 0 1.5rem;
   color: var(--institutional-black);
 }
-.intro__body p {
+/* Every intro paragraph EXCEPT the lede is reading serif (Jannon).
+   The :not(.lede) keeps this from overriding the lede's Sailec via
+   higher specificity. */
+.intro__body p:not(.lede) {
   font-family: var(--font-reading);
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   line-height: 1.55;
   text-align: justify;
   hyphens: auto;
@@ -415,7 +418,7 @@ a.cat-dropdown__item:hover {
   font-family: var(--font-lead);
   font-style: var(--font-lead-style, normal);
   color: var(--institutional-black);
-  font-size: clamp(1.5rem, 1.25rem + 0.6vw, 1.9rem);
+  font-size: clamp(1.2rem, 1.05rem + 0.45vw, 1.45rem);
   line-height: 1.4;
   text-align: justify;
   hyphens: auto;
@@ -553,7 +556,7 @@ a.cat-dropdown__item:hover {
 }
 .columns p {
   font-family: var(--font-reading);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   text-align: justify;
   hyphens: auto;
@@ -681,7 +684,7 @@ a.cat-dropdown__item:hover {
 }
 .people__text {
   font-family: var(--font-reading);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   line-height: 1.45;
   color: var(--text-secondary);
 }
@@ -689,7 +692,7 @@ a.cat-dropdown__item:hover {
 /* Wide closing paragraph inside a chapter */
 .pull-wide {
   font-family: var(--font-reading);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   text-align: justify;
   hyphens: auto;
