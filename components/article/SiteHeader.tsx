@@ -1,20 +1,21 @@
 import Link from "next/link";
 
-export type HeaderBrand = { slug: string; brand: string; active?: boolean };
+export type MenuItem = { brand: string; slug: string | null };
 
 /**
  * ARKETYPE top bar: wordmark + INDEX / CATÁLOGO (dropdown) / STUDIO.
- * Defaults to the cream wordmark for use over the dark hero/masthead band.
- * Pass `onLight` when the header sits on a light background.
- * `brands` populates the CATÁLOGO dropdown from published articles.
+ * INDEX and STUDIO are non-clickable labels (no page behind them yet).
+ * Defaults to the cream wordmark for use over the dark hero band; pass
+ * `onLight` on a light background. `menu` is the CATÁLOGO roster: brands with a
+ * slug are live links, brands with `slug: null` render dimmed ("coming soon").
  */
 export default function SiteHeader({
   onLight = false,
-  brands = [],
+  menu = [],
   activeSlug,
 }: {
   onLight?: boolean;
-  brands?: HeaderBrand[];
+  menu?: MenuItem[];
   activeSlug?: string;
 }) {
   const wordmark = onLight
@@ -23,36 +24,46 @@ export default function SiteHeader({
 
   return (
     <div className="site-header__inner">
-      <Link href="/catalogo" aria-label="Arketype — início">
+      <Link href="/" aria-label="Arketype — início">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={wordmark} alt="Arketype" className="brand-logo" />
       </Link>
       <nav className="nav">
-        <Link href="/catalogo" className="nav__link nav__link--dim">
+        <span className="nav__link nav__link--dim" aria-disabled="true">
           Index
-        </Link>
+        </span>
         <div className="cat-nav">
           <div className="cat-nav__label">
             CATÁLOGO<span style={{ fontSize: "0.7em", opacity: 0.7 }}>▾</span>
           </div>
           <div className="cat-dropdown">
             <div className="cat-dropdown__inner">
-              {brands.length === 0 ? (
+              {menu.length === 0 ? (
                 <span className="cat-dropdown__item cat-dropdown__item--on">
                   Em breve
                 </span>
               ) : (
-                brands.map((b) => (
-                  <Link
-                    key={b.slug}
-                    href={`/catalogo/${b.slug}`}
-                    className={`cat-dropdown__item${
-                      b.slug === activeSlug ? " cat-dropdown__item--on" : ""
-                    }`}
-                  >
-                    {b.brand}
-                  </Link>
-                ))
+                menu.map((item) =>
+                  item.slug ? (
+                    <Link
+                      key={item.brand}
+                      href={`/catalogo/${item.slug}`}
+                      className={`cat-dropdown__item${
+                        item.slug === activeSlug ? " cat-dropdown__item--on" : ""
+                      }`}
+                    >
+                      {item.brand}
+                    </Link>
+                  ) : (
+                    <span
+                      key={item.brand}
+                      className="cat-dropdown__item"
+                      aria-disabled="true"
+                    >
+                      {item.brand}
+                    </span>
+                  ),
+                )
               )}
             </div>
           </div>

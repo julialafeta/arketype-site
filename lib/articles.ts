@@ -92,6 +92,53 @@ export function getArticle(slug: string): Article | null {
   };
 }
 
+export type MenuItem = {
+  /** Brand label shown in the CATÁLOGO dropdown. */
+  brand: string;
+  /** Slug when a published article exists for this brand; null = "coming soon". */
+  slug: string | null;
+};
+
+/**
+ * The CATÁLOGO dropdown roster. Order and the full brand list come from
+ * `content/menu.json`; a brand becomes a live link the moment an article with a
+ * matching `brand` is published. Brands without an article render dimmed
+ * (non-clickable), mirroring the original design.
+ */
+export function getCatalogMenu(): MenuItem[] {
+  const articles = getAllArticles();
+  const bySlugForBrand = (brand: string) =>
+    articles.find(
+      (a) => a.brand.trim().toLowerCase() === brand.trim().toLowerCase(),
+    )?.slug ?? null;
+
+  let roster: string[] = [];
+  const menuPath = path.join(process.cwd(), "content", "menu.json");
+  if (fs.existsSync(menuPath)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(menuPath, "utf8"));
+      if (Array.isArray(parsed?.catalogo)) roster = parsed.catalogo;
+    } catch {
+      roster = [];
+    }
+  }
+
+  const items: MenuItem[] = roster.map((brand) => ({
+    brand,
+    slug: bySlugForBrand(brand),
+  }));
+
+  // Append any published brands that aren't in the roster, so nothing is hidden.
+  const inRoster = new Set(roster.map((b) => b.trim().toLowerCase()));
+  for (const a of articles) {
+    if (!inRoster.has(a.brand.trim().toLowerCase())) {
+      items.push({ brand: a.brand, slug: a.slug });
+    }
+  }
+
+  return items;
+}
+
 export function getAllArticles(): ArticleMeta[] {
   return getAllSlugs()
     .map((slug) => {

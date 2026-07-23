@@ -17,8 +17,10 @@
   /* Big uppercase display headings in the article (kept faithful to export). */
   --font-headline: "Helvetica Neue", "Suisse Intl", Helvetica, Arial, sans-serif;
 
-  --page: var(--archive-white);
-  --card: var(--absolute-white);
+  /* The Loewe export set the article surface to pure white (#FFFFFF),
+     not the near-paper archive-white. Keep it white. */
+  --page: #ffffff;
+  --card: #ffffff;
 }
 
 * {

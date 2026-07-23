@@ -1,14 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { compileMDX } from "next-mdx-remote/rsc";
-import {
-  getAllArticles,
-  getAllSlugs,
-  getArticle,
-} from "@/lib/articles";
+import { getAllSlugs, getArticle, getCatalogMenu } from "@/lib/articles";
 import { createMdxComponents } from "@/components/article/mdx";
 import ArticleShell from "@/components/article/ArticleShell";
-import type { HeaderBrand } from "@/components/article/SiteHeader";
 
 type Params = { marca: string };
 
@@ -54,17 +49,10 @@ export default async function ArticlePage({
     options: { parseFrontmatter: false },
   });
 
-  const brands: HeaderBrand[] = getAllArticles().map((a) => ({
-    slug: a.slug,
-    brand: a.brand,
-  }));
+  const menu = getCatalogMenu();
 
   return (
-    <ArticleShell
-      frontmatter={article.frontmatter}
-      slug={marca}
-      brands={brands}
-    >
+    <ArticleShell frontmatter={article.frontmatter} slug={marca} menu={menu}>
       {content}
     </ArticleShell>
   );

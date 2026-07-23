@@ -3,11 +3,17 @@
 Projeto editorial de análise de marcas de moda. Site em **Next.js (App Router)**,
 preparado para deploy na **Vercel** e domínio **arketype.com.br**.
 
-Nesta primeira versão o site é o **blog / Catálogo**:
+Nesta primeira versão o foco é o **artigo** (o estudo de marca):
 
-- `/catalogo` — home do Catálogo, lista os artigos (cada artigo é uma marca).
+- `/` — redireciona para o artigo mais recente.
 - `/catalogo/[marca]` — o artigo, renderizado por um **template reutilizável** a
   partir de um arquivo `.mdx`.
+
+Não há (por enquanto) uma home de listagem em `/catalogo`. A navegação entre
+marcas é feita pelo menu **CATÁLOGO** no cabeçalho, cujo roster é definido em
+`content/menu.json` — cada marca vira link automaticamente quando o `.mdx` dela
+é publicado; as demais aparecem esmaecidas ("em breve"). INDEX e STUDIO são
+rótulos ainda sem página.
 
 O design (tipografia, cores, cabeçalho ARKETYPE, grids de imagem) foi extraído do
 export do Claude Design e vive **inteiramente no template**. Publicar um artigo
@@ -112,13 +118,13 @@ O `content/catalogo/loewe.mdx` é a referência completa de todos os blocos.
 ```
 app/
   layout.tsx                 # <html>, fontes, CSS global, metadata
-  page.tsx                   # / → redireciona para /catalogo
+  page.tsx                   # / → redireciona para o artigo mais recente
   catalogo/
-    page.tsx                 # home do Catálogo (listagem)
     [marca]/page.tsx         # rota dinâmica do artigo (compila o MDX)
 components/article/          # o TEMPLATE (hero, header, MDX components, etc.)
 content/catalogo/            # os artigos (.mdx) — é aqui que você escreve
-lib/articles.ts             # lê os .mdx e o frontmatter
+content/menu.json           # roster do menu CATÁLOGO (ordem das marcas)
+lib/articles.ts             # lê os .mdx, o frontmatter e o menu
 public/
   catalogo/<marca>/          # imagens de cada artigo
   fonts/  logos/             # fontes e logotipos

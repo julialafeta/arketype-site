@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { ArticleFrontmatter } from "@/lib/articles";
-import SiteHeader, { type HeaderBrand } from "./SiteHeader";
+import SiteHeader, { type MenuItem } from "./SiteHeader";
 import Hero from "./Hero";
 import ProgressBar from "./ProgressBar";
 
@@ -12,12 +12,12 @@ import ProgressBar from "./ProgressBar";
 export default function ArticleShell({
   frontmatter,
   slug,
-  brands,
+  menu,
   children,
 }: {
   frontmatter: ArticleFrontmatter;
   slug: string;
-  brands: HeaderBrand[];
+  menu: MenuItem[];
   children: ReactNode;
 }) {
   const { closing, afterword, caseNumber, kicker } = frontmatter;
@@ -29,7 +29,7 @@ export default function ArticleShell({
       <Hero
         frontmatter={frontmatter}
         slug={slug}
-        header={<SiteHeader brands={brands} activeSlug={slug} />}
+        header={<SiteHeader menu={menu} activeSlug={slug} />}
       />
 
       <main className="article-main">{children}</main>

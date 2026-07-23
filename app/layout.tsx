@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import "@/styles/article.css";
-import "@/styles/catalog.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://arketype.com.br"),

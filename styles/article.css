@@ -138,6 +138,7 @@ a.cat-dropdown__item:hover {
   font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem);
   line-height: 1;
   letter-spacing: -0.01em;
+  text-transform: uppercase;
   color: var(--band-fg, var(--archive-white));
 }
 .hero__figure {
@@ -294,7 +295,7 @@ a.cat-dropdown__item:hover {
   font-family: var(--font-lead);
   font-style: var(--font-lead-style, normal);
   font-weight: 400;
-  font-size: clamp(1.6rem, 1.2rem + 1.1vw, 2rem);
+  font-size: clamp(1.4rem, 1.1rem + 0.85vw, 1.75rem);
   line-height: 1.45;
   text-align: justify;
   hyphens: auto;
@@ -303,8 +304,8 @@ a.cat-dropdown__item:hover {
 }
 .intro__body p {
   font-family: var(--font-reading);
-  font-size: 1.5rem;
-  line-height: 1.6;
+  font-size: 1.3rem;
+  line-height: 1.55;
   text-align: justify;
   hyphens: auto;
   margin: 0 0 1.5rem;
@@ -414,7 +415,7 @@ a.cat-dropdown__item:hover {
   font-family: var(--font-lead);
   font-style: var(--font-lead-style, normal);
   color: var(--institutional-black);
-  font-size: clamp(1.6rem, 1.3rem + 0.7vw, 2rem);
+  font-size: clamp(1.4rem, 1.2rem + 0.55vw, 1.75rem);
   line-height: 1.4;
   text-align: justify;
   hyphens: auto;
@@ -552,8 +553,8 @@ a.cat-dropdown__item:hover {
 }
 .columns p {
   font-family: var(--font-reading);
-  font-size: 1.6rem;
-  line-height: 1.55;
+  font-size: 1.35rem;
+  line-height: 1.5;
   text-align: justify;
   hyphens: auto;
   margin: 0 0 1.1rem;
@@ -680,7 +681,7 @@ a.cat-dropdown__item:hover {
 }
 .people__text {
   font-family: var(--font-reading);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1.45;
   color: var(--text-secondary);
 }
@@ -688,8 +689,8 @@ a.cat-dropdown__item:hover {
 /* Wide closing paragraph inside a chapter */
 .pull-wide {
   font-family: var(--font-reading);
-  font-size: 1.6rem;
-  line-height: 1.55;
+  font-size: 1.35rem;
+  line-height: 1.5;
   text-align: justify;
   hyphens: auto;
   max-width: 62ch;
