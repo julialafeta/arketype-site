@@ -274,9 +274,7 @@ a.cat-dropdown__item:hover {
 
 /* Intro / lede */
 .intro__wrap {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 var(--grid-margin);
+  padding-inline: max(var(--grid-margin), calc(50vw - var(--article-max) / 2));
 }
 .intro__grid {
   display: grid;
@@ -295,7 +293,7 @@ a.cat-dropdown__item:hover {
   font-family: var(--font-lead);
   font-style: var(--font-lead-style, normal);
   font-weight: 400;
-  font-size: clamp(1.15rem, 1rem + 0.45vw, 1.35rem);
+  font-size: clamp(1.1rem, 0.95rem + 0.4vw, 1.25rem);
   line-height: 1.45;
   text-align: justify;
   hyphens: auto;
@@ -307,7 +305,7 @@ a.cat-dropdown__item:hover {
    higher specificity. */
 .intro__body p:not(.lede) {
   font-family: var(--font-reading);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   line-height: 1.55;
   text-align: justify;
   hyphens: auto;
@@ -322,7 +320,8 @@ a.cat-dropdown__item:hover {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   box-sizing: border-box;
-  padding: 0 clamp(24px, 9vw, 220px);
+  padding: 0;
+  padding-inline: max(var(--grid-margin), calc(50vw - var(--article-max) / 2));
   margin-top: clamp(44px, 5.5vw, 70px);
   margin-bottom: clamp(28px, 3.5vw, 48px);
 }
@@ -335,7 +334,8 @@ a.cat-dropdown__item:hover {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   box-sizing: border-box;
-  padding: clamp(24px, 3vw, 44px) clamp(24px, 9vw, 220px) clamp(24px, 3vw, 48px);
+  padding-block: clamp(24px, 3vw, 44px) clamp(24px, 3vw, 48px);
+  padding-inline: max(var(--grid-margin), calc(50vw - var(--article-max) / 2));
   scroll-margin-top: 40px;
 }
 .chapter__kicker {
@@ -347,6 +347,31 @@ a.cat-dropdown__item:hover {
   text-transform: uppercase;
   font-size: clamp(0.7rem, 0.6rem + 0.25vw, 0.85rem);
   letter-spacing: 0.1em;
+}
+
+/* Feature layout ("origens"): flowing text left, full-height image column right. */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 36%);
+  gap: clamp(24px, 3vw, 56px);
+  align-items: stretch;
+  margin-top: clamp(14px, 2vw, 26px);
+}
+.feature__main {
+  min-width: 0;
+}
+.feature__main .chapter__heading {
+  max-width: 16ch;
+  font-size: clamp(1.9rem, 1.2rem + 2.2vw, 3.25rem);
+  line-height: 0.94;
+  margin: 0 0 clamp(22px, 3vw, 40px);
+}
+.feature__main .mini-quote {
+  margin-bottom: clamp(28px, 3.5vw, 48px);
+}
+/* The right image column stretches to the full height of the text. */
+.feature .figure {
+  min-height: clamp(420px, 52vw, 760px);
 }
 
 /* Split header: heading + lead/quote on one side, figure on the other */
@@ -386,39 +411,40 @@ a.cat-dropdown__item:hover {
   position: relative;
   z-index: 2;
   margin: 0;
-  max-width: 15ch;
+  max-width: 16ch;
   font-family: var(--font-headline);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(2.6rem, 0.5rem + 8vw, 8rem);
-  line-height: 0.82;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.9rem, 1.2rem + 2.3vw, 3.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
   color: var(--institutional-black);
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 .chapter__heading--wide {
-  max-width: 20ch;
-  font-size: clamp(2.6rem, 0.5rem + 7vw, 7rem);
-  line-height: 0.84;
+  max-width: 22ch;
+  font-size: clamp(1.9rem, 1.2rem + 2vw, 3.1rem);
+  line-height: 0.95;
 }
 /* Subtle overlap of the heading over the adjacent figure, per the export.
    Direction depends on which side the figure sits (set by <Split>). */
 .split .chapter__heading {
-  margin-right: -10%;
+  margin-right: -5%;
 }
 .split--figure-left .chapter__heading {
   margin-right: 0;
-  margin-left: -10%;
+  margin-left: -5%;
 }
 .split--even .chapter__heading {
   margin-left: 0;
-  margin-right: -10%;
+  margin-right: -5%;
 }
 .chapter__lead {
   font-family: var(--font-lead);
   font-style: var(--font-lead-style, normal);
   color: var(--institutional-black);
-  font-size: clamp(1.2rem, 1.05rem + 0.45vw, 1.45rem);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
   line-height: 1.4;
   text-align: justify;
   hyphens: auto;
@@ -556,7 +582,7 @@ a.cat-dropdown__item:hover {
 }
 .columns p {
   font-family: var(--font-reading);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   text-align: justify;
   hyphens: auto;
@@ -692,7 +718,7 @@ a.cat-dropdown__item:hover {
 /* Wide closing paragraph inside a chapter */
 .pull-wide {
   font-family: var(--font-reading);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   text-align: justify;
   hyphens: auto;
@@ -804,8 +830,12 @@ a.cat-dropdown__item:hover {
   }
   .split,
   .split--figure-left,
-  .split--even {
-    grid-template-columns: 1fr;
+  .split--even,
+  .feature {
+    grid-template-columns: 1fr !important;
+  }
+  .feature .figure {
+    min-height: clamp(280px, 70vw, 420px);
   }
   .split__text {
     min-height: 0;

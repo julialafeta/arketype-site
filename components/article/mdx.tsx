@@ -54,7 +54,7 @@ function Chapter({
 }: {
   n: string;
   kicker: string;
-  total?: number;
+  total?: number | string;
   id?: string;
   children: ReactNode;
 }) {
@@ -105,6 +105,29 @@ function Split({
 
 function Text({ children }: { children: ReactNode }) {
   return <div className="split__text">{children}</div>;
+}
+
+/* Feature layout: flowing text (heading + quote + multi-column body) on the
+   left, with a full-height image column on the right — the "origens" layout. */
+function Feature({
+  aside = "36%",
+  children,
+}: {
+  aside?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div
+      className="feature"
+      style={{ gridTemplateColumns: `1fr minmax(0, ${aside})` }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function FeatureMain({ children }: { children: ReactNode }) {
+  return <div className="feature__main">{children}</div>;
 }
 
 function Heading({
@@ -180,8 +203,8 @@ function Grid({
   rows = 3,
   children,
 }: {
-  cols?: number;
-  rows?: number;
+  cols?: number | string;
+  rows?: number | string;
   children: ReactNode;
 }) {
   return (
@@ -189,6 +212,21 @@ function Grid({
       className="grid"
       style={{
         gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+        gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/** A single-column vertical stack of images (e.g. the "origens" column). */
+function Stack({ rows = 3, children }: { rows?: number | string; children: ReactNode }) {
+  return (
+    <div
+      className="grid"
+      style={{
+        gridTemplateColumns: "minmax(0, 1fr)",
         gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
       }}
     >
@@ -238,7 +276,7 @@ function Columns({
   n = 3,
   children,
 }: {
-  n?: 2 | 3 | number;
+  n?: number | string;
   children: ReactNode;
 }) {
   return (
@@ -352,12 +390,15 @@ export function createMdxComponents(slug: string) {
     Lede,
     Chapter,
     Split,
+    Feature,
+    FeatureMain,
     Text,
     Heading,
     Lead,
     MiniQuote,
     Figure,
     Grid,
+    Stack,
     Slot: makeSlot(slug),
     Columns,
     PullQuote,
