@@ -361,11 +361,12 @@ a.cat-dropdown__item:hover {
   min-width: 0;
 }
 .feature__main .chapter__heading {
-  max-width: 13ch;
-  font-size: clamp(2.2rem, 1rem + 4vw, 5rem);
+  /* Slightly wider than the text block so it noses onto the image stack. */
+  width: 108%;
+  max-width: none;
+  font-size: clamp(2.4rem, 1rem + 4.5vw, 5.5rem);
   line-height: 0.9;
-  /* Nose slightly onto the image stack on the right. */
-  margin: 0 -8% clamp(22px, 3vw, 40px) 0;
+  margin: 0 0 clamp(22px, 3vw, 40px);
 }
 .feature__main .mini-quote {
   margin-bottom: clamp(28px, 3.5vw, 48px);
@@ -379,7 +380,9 @@ a.cat-dropdown__item:hover {
 .split {
   display: grid;
   grid-template-columns: 1fr 42%;
-  gap: clamp(28px, 4vw, 68px);
+  /* Small column gap so big headings reach the image; the lead keeps its own
+     breathing room via padding (below). */
+  gap: clamp(12px, 1.6vw, 28px);
   align-items: stretch;
   margin-top: clamp(14px, 2vw, 26px);
 }
@@ -412,18 +415,18 @@ a.cat-dropdown__item:hover {
   position: relative;
   z-index: 2;
   margin: 0;
-  /* A fixed measure (~2 words per line ⇒ ≤3 lines) that overflows the column
-     onto the image only modestly. align-self keeps it from stretching. */
+  /* The heading box is a touch wider than its column so it always noses onto
+     the adjacent image; align-self sets which side it overflows toward. */
   align-self: flex-start;
-  width: 13ch;
+  width: 118%;
   font-family: var(--font-headline);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(2.3rem, 1rem + 4vw, 5rem);
+  font-size: clamp(3rem, 1rem + 6vw, 7rem);
   line-height: 0.9;
   letter-spacing: -0.02em;
   color: var(--institutional-black);
-  text-wrap: balance;
+  /* Greedy wrap (default) so lines fill toward the box edge / the image. */
 }
 .chapter__heading--wide {
   align-self: stretch;
@@ -434,27 +437,24 @@ a.cat-dropdown__item:hover {
 }
 /* Subtle overlap of the heading over the adjacent figure, per the export.
    Direction depends on which side the figure sits (set by <Split>). */
-/* Big headings nose past the column onto the adjacent image (the dramatic
-   overlap from the original design). Direction follows the figure side. */
-.split .chapter__heading {
-  margin-right: -12%;
+/* Figure on the right (default) and even splits: the wider-than-column box
+   overflows RIGHT onto the image. */
+.split .chapter__heading,
+.split--even .chapter__heading {
+  align-self: flex-start;
 }
-/* Figure on the left: heading sits in the right column. Using rtl direction
-   makes oversized words spill LEFT onto the image (LTR would overflow right,
-   off the page). Each heading line is a single word, so no reordering. */
+/* Figure on the left: box overflows LEFT onto the image. flex-end anchors its
+   right edge to the column; rtl makes oversized words spill left (not off the
+   page's right edge). */
 .split--figure-left .chapter__heading {
-  margin-left: 0;
-  margin-right: 0;
   align-self: flex-end;
   direction: rtl;
   text-align: right;
-  /* Nudge left so the title noses a little onto the image, like the
-     figure-right chapters (which overflow right onto their image). */
-  transform: translateX(-7%);
 }
-.split--even .chapter__heading {
-  margin-left: 0;
-  margin-right: -12%;
+/* Figure-left: the image is on the left, so the lead's clearance flips side. */
+.split--figure-left .chapter__lead {
+  padding-right: 0;
+  padding-left: clamp(20px, 3.5vw, 56px);
 }
 .chapter__lead {
   font-family: var(--font-lead);
@@ -466,6 +466,8 @@ a.cat-dropdown__item:hover {
   hyphens: auto;
   max-width: 42ch;
   margin: 0;
+  /* Keep the lead clear of the image even though the column gap is small. */
+  padding-right: clamp(20px, 3.5vw, 56px);
 }
 /* Standalone lead (not inside a flex split) gets a top gap. */
 .chapter__lead--spaced {
@@ -863,7 +865,8 @@ a.cat-dropdown__item:hover {
     margin-right: 0;
   }
   /* Stacked on mobile: headings read normally (no bleed, no rtl, full width). */
-  .chapter__heading {
+  .chapter__heading,
+  .feature__main .chapter__heading {
     width: auto;
   }
   .split--figure-left .chapter__heading {

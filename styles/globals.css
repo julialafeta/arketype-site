@@ -25,7 +25,7 @@
   /* Max width of the article's reading column. The body, chapter rules and
      intro are centred to this, giving generous side margins on wide screens.
      Tune this single value to make the container narrower/wider. */
-  --article-max: 940px;
+  --article-max: 1120px;
 }
 
 * {
